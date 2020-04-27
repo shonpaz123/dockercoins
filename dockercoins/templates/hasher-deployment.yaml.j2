@@ -1,0 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: hasher
+spec:
+  replicas: {{ hasher_replicas|default(size) }}  
+  selector:
+    matchLabels:    
+      app: hasher
+  template:    
+    metadata:
+      labels:  
+        app: hasher
+    spec:
+      containers:
+        - name: hasher
+          image: dockercoins/hasher:v0.2
+          ports:
+            - containerPort: 80
+              protocol: TCP
+

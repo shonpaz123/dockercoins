@@ -1,0 +1,4 @@
+---
+# defaults file for dockercoins
+state: present
+size: 3

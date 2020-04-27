@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rng
+spec:
+  selector:
+    app: rng
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

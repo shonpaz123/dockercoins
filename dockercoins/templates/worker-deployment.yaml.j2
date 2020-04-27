@@ -1,0 +1,20 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: worker
+spec:
+  replicas: {{ worker_replicas|default(size) }}
+  selector:
+    matchLabels:  
+      app: worker
+  template:    
+    metadata:
+      labels:  
+        app: worker
+    spec:
+      containers:
+        - name: rng
+          image: dockercoins/worker:v0.2
+          ports:
+            - containerPort: 80
+              protocol: TCP

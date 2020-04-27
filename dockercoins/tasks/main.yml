@@ -1,0 +1,54 @@
+---
+- name: start redis deployment to "{{ state }}"
+  k8s:
+   state: "{{ state }}"
+   definition: "{{ lookup('template', 'redis-deployment.yaml.j2') | from_yaml }}"
+   namespace: "{{ meta.namespace }}"
+
+- name: start redis service
+  k8s:
+   state: "{{ state }}"
+   definition: "{{ lookup('template', 'redis-service.yaml.j2') | from_yaml }}"
+   namespace: "{{ meta.namespace }}"
+
+- name: start hasher deployment to "{{ state }}"
+  k8s:
+   state: "{{ state }}"
+   definition: "{{ lookup('template', 'hasher-deployment.yaml.j2') | from_yaml }}"
+   namespace: "{{ meta.namespace }}"
+
+- name: start hasher service 
+  k8s:
+   state: "{{ state }}"
+   definition: "{{ lookup('template', 'hasher-service.yaml.j2') | from_yaml }}"
+   namespace: "{{ meta.namespace }}"
+
+- name: start rng deployment to "{{ state }}"
+  k8s:
+   state: "{{ state }}"
+   definition: "{{ lookup('template', 'rng-deployment.yaml.j2') | from_yaml }}"
+   namespace: "{{ meta.namespace }}"
+
+- name: start rng serivce 
+  k8s:
+   state: "{{ state }}"
+   definition: "{{ lookup('template', 'rng-service.yaml.j2') | from_yaml }}"
+   namespace: "{{ meta.namespace }}"
+
+- name: start worker deployment to "{{ state }}"
+  k8s:
+   state: "{{ state }}"
+   definition: "{{ lookup('template', 'worker-deployment.yaml.j2') | from_yaml }}"
+   namespace: "{{ meta.namespace }}"
+
+- name: start webui deployment to "{{ state }}"
+  k8s:
+   state: "{{ state }}"
+   definition: "{{ lookup('template', 'webui-deployment.yaml.j2') | from_yaml }}"
+   namespace: "{{ meta.namespace }}"
+
+- name: start webui service 
+  k8s:
+   state: "{{ state }}"
+   definition: "{{ lookup('template', 'webui-service.yaml.j2') | from_yaml }}"
+   namespace: "{{ meta.namespace }}"

@@ -1,0 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: rng
+spec:
+  replicas: {{ rng_replicas|default(size) }}  
+  selector:
+    matchLabels:    
+      app: rng
+  template:    
+    metadata:
+      labels:  
+        app: rng
+    spec:
+      containers:
+        - name: rng
+          image: dockercoins/rng:v0.4
+          ports:
+            - containerPort: 80
+              protocol: TCP
+
